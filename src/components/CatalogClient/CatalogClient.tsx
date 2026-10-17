@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchCampers } from '@/lib/api/campers';
 import type { CamperFilters } from '@/types/camper';
+import Filters from '@/components/Filters/Filters';
 
 export default function CatalogClient() {
   const [filters, setFilters] = useState<CamperFilters>({});
@@ -19,20 +20,28 @@ export default function CatalogClient() {
 
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Something went wrong</p>;
+  const renderList = () => {
+    if (isLoading) return <p>Loading...</p>;
+    if (isError) return <p>Something went wrong</p>;
+    if (campers.length === 0) return <p>No campers found</p>;
 
+    return (
+      <>
+        {campers.map((camper) => (
+          <p key={camper.id}>{camper.name}</p>
+        ))}
+        {hasNextPage && (
+          <button type="button" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? 'Loading...' : 'Load more'}
+          </button>
+        )}
+      </>
+    );
+  };
   return (
     <div>
-      {campers.map((camper) => (
-        <p key={camper.id}>{camper.name}</p>
-      ))}
-
-      {hasNextPage && (
-        <button type="button" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-          {isFetchingNextPage ? 'Loading...' : 'Load more'}
-        </button>
-      )}
+      <Filters onSearch={setFilters} />
+      <div>{renderList()}</div>
     </div>
   );
 }
