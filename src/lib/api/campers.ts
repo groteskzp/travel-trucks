@@ -15,14 +15,17 @@ export async function fetchCampers(page: number, filters: CamperFilters): Promis
 }
 
 export async function fetchCamperById(id: string): Promise<CamperDetails> {
-    const { data } = await api.get<CamperDetails>(`/campers/${id}`);
-    return data;    
+  const { data } = await api.get<CamperDetails>(`/campers/${id}`);
+  return data;
 }
 export async function fetchReviews(id: string): Promise<Review[]> {
-    const { data } = await api.get<Review[]>(`/campers/${id}/reviews`);
-    return data;
+  const { data } = await api.get<Review[]>(`/campers/${id}/reviews`);
+  return data;
 }
-export async function createBooking(id: string, body: { name: string, email: string }):Promise<{ message: string}> {
-    const { data } = await api.post<{message: string}>(`/campers/${id}/booking-requests`, body)
-    return data;
+export async function createBooking(
+  id: string,
+  body: { name: string; email: string }
+): Promise<{ message: string }> {
+  const { data } = await api.post<{ message: string }>(`/campers/${id}/booking-requests`, body);
+  return data;
 }
