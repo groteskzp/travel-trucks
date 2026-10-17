@@ -7,6 +7,7 @@ import { fetchCampers } from '@/lib/api/campers';
 import type { CamperFilters } from '@/types/camper';
 import Filters from '@/components/Filters/Filters';
 import CamperCard from '../CamperCard/CamperCard';
+import Loader from '../Loader/Loader';
 
 export default function CatalogClient() {
   const [filters, setFilters] = useState<CamperFilters>({});
@@ -23,7 +24,7 @@ export default function CatalogClient() {
   const campers = data?.pages.flatMap((page) => page.campers) ?? [];
 
   const renderList = () => {
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <Loader />;
     if (isError) return <p>Something went wrong</p>;
     if (campers.length === 0) return <p>No campers found</p>;
 
@@ -41,7 +42,7 @@ export default function CatalogClient() {
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            {isFetchingNextPage ? 'Loading...' : 'Load more'}
+            Load more
           </button>
         )}
       </>
@@ -53,6 +54,7 @@ export default function CatalogClient() {
         <Filters onSearch={setFilters} />
       </aside>
       <section className={css.catalog}>{renderList()}</section>
+      {isFetchingNextPage && <Loader />}
     </div>
   );
 }
