@@ -6,6 +6,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchCampers } from '@/lib/api/campers';
 import type { CamperFilters } from '@/types/camper';
 import Filters from '@/components/Filters/Filters';
+import CamperCard from '../CamperCard/CamperCard';
 
 export default function CatalogClient() {
   const [filters, setFilters] = useState<CamperFilters>({});
@@ -28,11 +29,18 @@ export default function CatalogClient() {
 
     return (
       <>
-        {campers.map((camper) => (
-          <p key={camper.id}>{camper.name}</p>
-        ))}
+        <ul className={css.list}>
+          {campers.map((camper) => (
+            <CamperCard key={camper.id} camper={camper} />
+          ))}
+        </ul>
         {hasNextPage && (
-          <button type="button" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+          <button
+            type="button"
+            className={css.loadMore}
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
             {isFetchingNextPage ? 'Loading...' : 'Load more'}
           </button>
         )}

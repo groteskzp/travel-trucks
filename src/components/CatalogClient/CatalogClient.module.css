@@ -15,4 +15,35 @@
 
 .catalog {
   flex: 1;
+  min-width: 0;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.loadMore {
+  display: block;
+  margin: 40px auto 0;
+  padding: 16px 32px;
+  border: 1px solid var(--gray-light);
+  border-radius: 200px;
+  background: var(--white);
+  font: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.loadMore:hover {
+  border-color: var(--main);
+}
+
+.loadMore:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
