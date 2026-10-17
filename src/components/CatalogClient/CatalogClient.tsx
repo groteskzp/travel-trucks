@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import css from './CatalogClient.module.css';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchCampers } from '@/lib/api/campers';
 import type { CamperFilters } from '@/types/camper';
@@ -39,9 +40,11 @@ export default function CatalogClient() {
     );
   };
   return (
-    <div>
-      <Filters onSearch={setFilters} />
-      <div>{renderList()}</div>
+    <div className={css.layout}>
+      <aside className={css.sidebar}>
+        <Filters onSearch={setFilters} />
+      </aside>
+      <section className={css.catalog}>{renderList()}</section>
     </div>
   );
 }
