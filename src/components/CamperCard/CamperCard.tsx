@@ -51,7 +51,7 @@ export default function CamperCard({ camper, priority = false }: CamperCardProps
           </li>
           <li className={css.badge}>
             <Image src="/icons/form.svg" width={20} height={20} alt="" />
-            {camper.form.replace('_', ' ')}{' '}
+            {camper.form.replace('_', ' ')}
           </li>
         </ul>
 

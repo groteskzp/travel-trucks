@@ -18,13 +18,10 @@ export default function Reviews({ reviews }: ReviewsProps) {
           {reviews.map((review) => (
             <li key={review.id} className={css.card}>
               <div className={css.header}>
-                {}
                 <span className={css.avatar}>{review.reviewer_name[0]}</span>
-
                 <div className={css.author}>
                   <p className={css.name}>{review.reviewer_name}</p>
                   <div className={css.stars}>
-                    {}
                     {Array.from({ length: 5 }, (_, i) => (
                       <Image
                         key={i}

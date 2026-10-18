@@ -6,14 +6,28 @@ import Image from 'next/image';
 import VehicleDetails from '@/components/VehicleDetails/VehicleDetails';
 import Reviews from '@/components/Reviews/Reviews';
 import BookingForm from '@/components/BookingForm/BookingForm';
+import { notFound } from 'next/navigation';
+import { cache } from 'react';
+import axios from 'axios';
 
 interface DetailsPageProps {
   params: Promise<{ camperId: string }>;
 }
 
+const getCamper = cache(async (id: string) => {
+  try {
+    return await fetchCamperById(id);
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      notFound();
+    }
+    throw error;
+  }
+});
+
 export async function generateMetadata({ params }: DetailsPageProps): Promise<Metadata> {
   const { camperId } = await params;
-  const camper = await fetchCamperById(camperId);
+  const camper = await getCamper(camperId);
   return {
     title: `${camper.name} | TravelTrucks`,
     description: camper.description.slice(0, 160),
@@ -23,8 +37,10 @@ export async function generateMetadata({ params }: DetailsPageProps): Promise<Me
 export default async function DetailsPage({ params }: DetailsPageProps) {
   const { camperId } = await params;
 
-  const [camper, reviews] = await Promise.all([fetchCamperById(camperId), fetchReviews(camperId)]);
-
+  const [camper, reviews] = await Promise.all([
+    getCamper(camperId),
+    fetchReviews(camperId).catch(() => []),
+  ]);
   return (
     <main className={css.page}>
       <section className={css.top}>
@@ -62,7 +78,7 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
         </div>
         <div className={css.booking}>
           <BookingForm camperId={camperId} />
-        </div>{' '}
+        </div>
       </section>
     </main>
   );

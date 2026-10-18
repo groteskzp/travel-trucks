@@ -40,7 +40,7 @@ export default function VehicleDetails({ camper }: VehicleDetailsProps) {
         {specs.map(([label, value]) => (
           <li key={label} className={css.spec}>
             <span>{label}</span>
-            <span className={label === 'Form' ? css.capitalize : undefined}>{value}</span>{' '}
+            <span className={label === 'Form' ? css.capitalize : undefined}>{value}</span>
           </li>
         ))}
       </ul>

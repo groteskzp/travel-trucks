@@ -8,7 +8,7 @@ import type {
 } from '@/types/camper';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL ?? 'https://campers-api.goit.study',
 });
 
 export const PER_PAGE = 4;
