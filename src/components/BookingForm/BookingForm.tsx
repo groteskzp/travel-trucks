@@ -82,6 +82,9 @@ export default function BookingForm({ camperId }: BookingFormProps) {
               <input
                 className={errors.name ? `${css.input} ${css.inputError}` : css.input}
                 type="text"
+                aria-label="Name"
+                autoComplete="name"
+                aria-invalid={!!errors.name}
                 placeholder="Name*"
                 value={name}
                 onChange={(e) => handleNameChange(e.target.value)}
@@ -105,6 +108,9 @@ export default function BookingForm({ camperId }: BookingFormProps) {
               <input
                 className={errors.email ? `${css.input} ${css.inputError}` : css.input}
                 type="email"
+                aria-label="Email"
+                autoComplete="email"
+                aria-invalid={!!errors.email}
                 placeholder="Email*"
                 value={email}
                 onChange={(e) => handleEmailChange(e.target.value)}
