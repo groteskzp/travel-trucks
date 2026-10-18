@@ -34,7 +34,7 @@ export default function Gallery({ images, name }: GalleryProps) {
               onClick={() => setActive(index)}
               className={index === active ? `${css.thumb} ${css.active}` : css.thumb}
             >
-              <Image src={img.thumb} alt="" width={136} height={144} className={css.thumbImg} />
+              <Image src={img.thumb} alt="" fill sizes="144px" className={css.thumbImg} />
             </button>
           </li>
         ))}

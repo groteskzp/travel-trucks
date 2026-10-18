@@ -31,8 +31,8 @@ export default function CatalogClient() {
     return (
       <>
         <ul className={css.list}>
-          {campers.map((camper) => (
-            <CamperCard key={camper.id} camper={camper} />
+          {campers.map((camper, index) => (
+            <CamperCard key={camper.id} camper={camper} priority={index === 0} />
           ))}
         </ul>
         {hasNextPage && (

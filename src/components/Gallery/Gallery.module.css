@@ -15,8 +15,14 @@
   display: flex;
   gap: 32px;
 }
-
+.thumbs li {
+  flex: 1;
+}
 .thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 144px;
   padding: 0;
   border: 2px solid transparent;
   border-radius: 12px;
@@ -24,14 +30,10 @@
   cursor: pointer;
   background: none;
 }
+.thumbImg {
+  object-fit: cover;
+}
 
 .active {
   border-color: var(--grey-green);
-}
-
-.thumbImg {
-  display: block;
-  width: 100%;
-  height: 144px;
-  object-fit: cover;
 }

@@ -5,9 +5,10 @@ import Link from 'next/link';
 
 interface CamperCardProps {
   camper: Camper;
+  priority?: boolean;
 }
 
-export default function CamperCard({ camper }: CamperCardProps) {
+export default function CamperCard({ camper, priority = false }: CamperCardProps) {
   return (
     <li className={css.card}>
       <Image
@@ -16,6 +17,7 @@ export default function CamperCard({ camper }: CamperCardProps) {
         width={219}
         height={240}
         className={css.image}
+        priority={priority}
       />
       <div className={css.content}>
         <div className={css.header}>
