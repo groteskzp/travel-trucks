@@ -92,3 +92,19 @@
 .button:hover {
   background: var(--green-hover);
 }
+@media (max-width: 767px) {
+  .card {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 219 / 240;
+  }
+
+  .titleRow {
+    flex-wrap: wrap;
+  }
+}

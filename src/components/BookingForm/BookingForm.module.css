@@ -130,3 +130,8 @@
 .success {
   color: var(--grey-green);
 }
+@media (max-width: 767px) {
+  .card {
+    padding: 24px 16px;
+  }
+}

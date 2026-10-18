@@ -53,3 +53,20 @@
 .button:hover {
   background-color: var(--green-hover);
 }
+@media (max-width: 767px) {
+  .hero {
+    height: auto;
+    min-height: 560px;
+    padding: 160px 16px 64px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 1.2;
+    white-space: normal;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+}

@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TravelTrucks
+
+A camper rental web app: a filterable catalog and a camper details page with a gallery, specifications, reviews and a booking form.
+
+**Live demo:** https://travel-trucks-eight-pi.vercel.app/
+
+## Features
+
+- Home page with a hero banner and a link to the catalog
+- Catalog with server-side filtering by location, vehicle type, engine and transmission
+- "Load more" pagination (4 campers per page); previous results reset on a new search
+- Empty catalog state with a filter reset
+- Camper details page (opens in a new tab): gallery, specifications, reviews with ratings
+- Booking form with validation and toast notifications
+- Loaders, error and 404 pages
+- Responsive layout
+
+## Tech Stack
+
+- Next.js 16 (App Router), TypeScript
+- TanStack Query (useInfiniteQuery)
+- Axios
+- CSS Modules
+- next/font (Inter, Manrope), next/image
+- Sonner (toast notifications)
+
+## Routes
+
+| Route                 | Page            |
+| --------------------- | --------------- |
+| `/`                   | Home            |
+| `/catalog`            | Campers catalog |
+| `/catalog/[camperId]` | Camper details  |
+
+## API
+
+https://campers-api.goit.study
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/groteskzp/travel-trucks.git
+cd travel-trucks
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable              | Description  |
+| --------------------- | ------------ |
+| `NEXT_PUBLIC_API_URL` | API base URL |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+The source code lives in the `src/` folder:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app` — pages and layouts (App Router)
+- `src/components` — UI components
+- `src/lib/api` — API requests
+- `src/types` — TypeScript types
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Author
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Valentyn Buryi — [GitHub](https://github.com/groteskzp)
