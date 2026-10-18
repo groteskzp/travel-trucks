@@ -48,7 +48,9 @@
   line-height: 1.5;
   letter-spacing: -0.01em;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .retry {

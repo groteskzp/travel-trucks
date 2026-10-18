@@ -8,9 +8,16 @@ import type { CamperFilters } from '@/types/camper';
 import Filters from '@/components/Filters/Filters';
 import CamperCard from '../CamperCard/CamperCard';
 import Loader from '../Loader/Loader';
+import EmptyState from '../EmptyState/EmptyState';
 
 export default function CatalogClient() {
   const [filters, setFilters] = useState<CamperFilters>({});
+  const [filtersKey, setFiltersKey] = useState(0);
+
+  const handleReset = () => {
+    setFilters({});
+    setFiltersKey((prev) => prev + 1);
+  };
 
   const { data, fetchNextPage, hasNextPage, isLoading, isError, isFetchingNextPage } =
     useInfiniteQuery({
@@ -26,7 +33,7 @@ export default function CatalogClient() {
   const renderList = () => {
     if (isLoading) return <Loader />;
     if (isError) return <p>Something went wrong</p>;
-    if (campers.length === 0) return <p>No campers found</p>;
+    if (campers.length === 0) return <EmptyState onReset={handleReset} />;
 
     return (
       <>
@@ -51,7 +58,7 @@ export default function CatalogClient() {
   return (
     <div className={css.layout}>
       <aside className={css.sidebar}>
-        <Filters onSearch={setFilters} />
+        <Filters key={filtersKey} onSearch={setFilters} />
       </aside>
       <section className={css.catalog}>{renderList()}</section>
       {isFetchingNextPage && <Loader />}
