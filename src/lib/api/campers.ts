@@ -1,5 +1,11 @@
 import axios from 'axios';
-import type { CampersResponse, CamperDetails, Review, CamperFilters } from '@/types/camper';
+import type {
+  CampersResponse,
+  CamperDetails,
+  Review,
+  CamperFilters,
+  BookingRequest,
+} from '@/types/camper';
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -22,10 +28,6 @@ export async function fetchReviews(id: string): Promise<Review[]> {
   const { data } = await api.get<Review[]>(`/campers/${id}/reviews`);
   return data;
 }
-export async function createBooking(
-  id: string,
-  body: { name: string; email: string }
-): Promise<{ message: string }> {
-  const { data } = await api.post<{ message: string }>(`/campers/${id}/booking-requests`, body);
-  return data;
+export async function createBooking(id: string, body: BookingRequest): Promise<void> {
+  await api.post(`/campers/${id}/booking-requests`, body);
 }

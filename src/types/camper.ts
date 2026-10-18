@@ -33,6 +33,12 @@ export interface CamperImage {
 
 export interface CamperDetails extends Omit<Camper, 'coverImage'> {
   gallery: CamperImage[];
+  length: string;
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
+  amenities: string[];
 }
 
 export interface CampersResponse {
@@ -50,6 +56,10 @@ export interface Review {
   reviewer_rating: number;
   comment: string;
   createdAt: string;
+}
+export interface BookingRequest {
+  name: string;
+  email: string;
 }
 
 export interface CamperFilters {
