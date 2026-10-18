@@ -1,5 +1,8 @@
 'use client';
 
+import Link from 'next/link';
+import css from './error.module.css';
+
 interface ErrorProps {
   error: Error;
   reset: () => void;
@@ -7,12 +10,20 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   return (
-    <main>
-      <h1>Something went wrong</h1>
-      <p>{error.message}</p>
-      <button type="button" onClick={reset}>
-        Try again
-      </button>
+    <main className={css.page}>
+      <div className={css.box}>
+        <h1 className={css.title}>Something went wrong</h1>
+        <p className={css.text}>{error.message || 'Failed to load camper details.'}</p>
+
+        <div className={css.actions}>
+          <button type="button" className={css.retry} onClick={reset}>
+            Try again
+          </button>
+          <Link href="/catalog" className={css.back}>
+            Back to catalog
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }
