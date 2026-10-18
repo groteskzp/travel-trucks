@@ -78,3 +78,18 @@
   line-height: 1.5;
   color: var(--text);
 }
+@media (max-width: 1023px) {
+  .page {
+    padding: 32px 16px;
+    gap: 48px;
+  }
+
+  .top,
+  .bottom {
+    flex-direction: column;
+  }
+
+  .gallery {
+    width: 100%;
+  }
+}

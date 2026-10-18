@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, Manrope } from 'next/font/google';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import { Toaster } from 'sonner';
 import Header from '@/components/Header/Header';
 
 const inter = Inter({
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body>
         <Header />
         <TanStackProvider>{children}</TanStackProvider>
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

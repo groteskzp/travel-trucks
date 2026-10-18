@@ -68,3 +68,6 @@ export interface CamperFilters {
   transmission?: Transmission;
   engine?: Engine;
 }
+export interface BookingResponse {
+  message: string;
+}

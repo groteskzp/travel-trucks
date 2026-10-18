@@ -7,11 +7,13 @@
   background-color: var(--inputs);
   border-bottom: 1px solid var(--badges);
 }
+
 .nav {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .list {
   display: flex;
   gap: 32px;
@@ -24,10 +26,28 @@
   line-height: 1.5;
   transition: color 250ms ease;
 }
+
 .link {
   color: var(--main);
 }
+
 .link:hover,
 .active {
   color: var(--grey-green);
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding: 24px 16px;
+  }
+
+  .nav {
+    position: static;
+    transform: none;
+    margin-left: auto;
+  }
+
+  .list {
+    gap: 16px;
+  }
 }

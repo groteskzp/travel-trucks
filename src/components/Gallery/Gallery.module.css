@@ -37,3 +37,17 @@
 .active {
   border-color: var(--grey-green);
 }
+@media (max-width: 1023px) {
+  .main {
+    height: auto;
+    aspect-ratio: 638 / 505;
+  }
+
+  .thumbs {
+    gap: 8px;
+  }
+
+  .thumb {
+    height: 72px;
+  }
+}

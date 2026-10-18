@@ -1,5 +1,6 @@
 'use client';
 
+import { toast } from 'sonner';
 import { useState } from 'react';
 import { createBooking } from '@/lib/api/campers';
 import Image from 'next/image';
@@ -9,7 +10,7 @@ interface BookingFormProps {
   camperId: string;
 }
 
-type Status = 'idle' | 'sending' | 'success' | 'error';
+type Status = 'idle' | 'sending';
 
 interface FormErrors {
   name?: string;
@@ -40,12 +41,17 @@ export default function BookingForm({ camperId }: BookingFormProps) {
 
     setStatus('sending');
     try {
-      await createBooking(camperId, { name: name.trim(), email: email.trim() });
-      setStatus('success');
+      const res = await createBooking(camperId, {
+        name: name.trim(),
+        email: email.trim(),
+      });
+      toast.success(res.message || 'Booking request sent!');
       setName('');
       setEmail('');
+      setStatus('idle');
     } catch {
-      setStatus('error');
+      toast.error('Failed to send booking. Please try again.');
+      setStatus('idle');
     }
   };
 
@@ -120,13 +126,6 @@ export default function BookingForm({ camperId }: BookingFormProps) {
         <button className={css.button} type="submit" disabled={status === 'sending'}>
           {status === 'sending' ? 'Sending...' : 'Send'}
         </button>
-
-        {status === 'success' && (
-          <p className={css.success}>Thank you! Your booking request has been sent.</p>
-        )}
-        {status === 'error' && (
-          <p className={css.errorText}>Something went wrong. Please try again.</p>
-        )}
       </form>
     </div>
   );

@@ -47,3 +47,12 @@
   opacity: 0.6;
   cursor: default;
 }
+@media (max-width: 1023px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
