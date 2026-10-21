@@ -1,6 +1,8 @@
 .hero {
   position: relative;
-  height: 696px;
+  height: calc(100vh - 72px);
+  /* height: 100vh; */
+
   padding: 260px 64px 0;
   overflow: hidden;
 }
